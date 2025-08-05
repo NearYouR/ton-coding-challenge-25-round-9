@@ -1,0 +1,16 @@
+int current = 0;
+
+() recv_internal(slice in_msg, cell in_msg_body, int msg_value, int msg_bounced) {
+  int opcode = in_msg_body~load_uint(32);
+  int amount = in_msg_body~load_uint(32);
+  switch (opcode) {
+    case 1: {
+      current += amount;
+    }
+    case 2: {
+      current -= amount;
+    }
+    default: {
+    }
+  }
+}
